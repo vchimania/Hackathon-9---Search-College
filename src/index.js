@@ -44,7 +44,7 @@ app.get("/findcolleges",async(req,res)=>{
     if(minPackage){
         res.send(
             await collegeModel.find({
-                minPackage:{$get:minPackage},
+                minPackage:{$gte:minPackage},
             })
         )
     }
