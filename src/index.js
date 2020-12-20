@@ -23,21 +23,21 @@ app.get("/findcolleges",async(req,res)=>{
     if(name){
         res.send(
             await collegeModel.find({
-                name:{$regux:name, $options:"i"},
+                name:{$regex:name, $options:"i"},
             })
         )
     }
     if(state){
         res.send(
             await collegeModel.find({
-               state:{$regux:state, $options:"i"},
+               state:{$regex:state, $options:"i"},
             })
         )
     }
     if(city){
         res.send(
             await collegeModel.find({
-                city:{$regux:city, $options:"i"},
+                city:{$regex:city, $options:"i"},
             })
         )
     }
@@ -51,21 +51,21 @@ app.get("/findcolleges",async(req,res)=>{
     if(maxFees){
         res.send(
             await collegeModel.find({
-                maxFees:{$get:maxFees},
+                maxFees:{$lte:maxFees},
             })
         )
     }
     if(course){
         res.send(
             await collegeModel.find({
-                course:{$regux:course, $options:"i"},
+                course:{$regex:course, $options:"i"},
             })
         )
     }
     if(exam){
         res.send(
             await collegeModel.find({
-                exam:{$regux:exam, $options:"i"},
+                exam:{$regex:exam, $options:"i"},
             })
         )
     }else{
