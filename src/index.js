@@ -20,57 +20,34 @@ app.get("/findcolleges",async(req,res)=>{
     const course=req.query.course;
     const exam=req.query.exam;
 
+    const obj={};
     if(name){
-        res.send(
-            await collegeModel.find({
-                name:{$regex:name, $options:"i"},
-            })
-        )
+ obj.name= {$regex:name, $options:"i"};
     }
     if(state){
-        res.send(
-            await collegeModel.find({
-               state:{$regex:state, $options:"i"},
-            })
-        )
+      obj.state={$regex:state, $options:"i"};
+
     }
+   
     if(city){
-        res.send(
-            await collegeModel.find({
-                city:{$regex:city, $options:"i"},
-            })
-        )
+    obj.city= {$regex:city, $options:"i"};
     }
+
     if(minPackage){
-        res.send(
-            await collegeModel.find({
-                minPackage:{$gte:minPackage},
-            })
-        )
+        obj.minPackage= {$gte:minPackage};
     }
     if(maxFees){
-        res.send(
-            await collegeModel.find({
-                maxFees:{$lte:maxFees},
-            })
-        )
+        obj.maxFees= {$lte:maxFees};
     }
     if(course){
-        res.send(
-            await collegeModel.find({
-                course:{$regex:course, $options:"i"},
-            })
-        )
+        obj.course={$regex:course, $options:"i"};
     }
     if(exam){
-        res.send(
-            await collegeModel.find({
-                exam:{$regex:exam, $options:"i"},
-            })
-        )
-    }else{
-        res.send(await collegeModel.find());
+        obj.exam= {$regex:exam, $options:"i"};
+        
     }
+        res.send(await collegeModel.find(obj));
+    
 })
 
 
